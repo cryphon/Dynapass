@@ -2,7 +2,7 @@
 
 
 
-#### To run this project ->
+#### To run this project
 ```
 cd QuickSelect
 npm run build
