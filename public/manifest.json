@@ -3,6 +3,9 @@
     "name": "QuickSelect",
     "version": "1.0",
     "description": "Build with React and webpack",
+    "action": {
+        "default_popup": "app.html"
+    },
     "permissions": [
       "contextMenus",
       "activeTab",
