@@ -7,7 +7,11 @@ const App = () => {
     const { theme, toggleTheme } = useTheme();
 
     return (
-        <div>
+        <div
+            style={{
+                width: 400,
+                height: 500,
+            }}>
             <CssBaseline />
             <Typography variant="h4" gutterBottom>
                 {theme.charAt(0).toUpperCase() + theme.slice(1)} Theme
