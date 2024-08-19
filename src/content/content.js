@@ -1,6 +1,6 @@
 document.addEventListener('mouseup', function () {
   const selection = window.getSelection().toString().trim();
-  if (selection.length > 0) {
+  if (selection.length > 1) {
     console.log('Selection detected:', selection);
     
     const rect = window.getSelection().getRangeAt(0).getBoundingClientRect();
@@ -30,5 +30,5 @@ document.addEventListener('mouseup', function () {
     script.src = chrome.runtime.getURL('popup.bundle.js');
     script.onload = () => console.log('Popup script loaded successfully');
     popupContainer.appendChild(script);
-  }
+  } 
 });

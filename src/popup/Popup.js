@@ -1,25 +1,25 @@
 import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
-import { Box, ToggleButtonGroup, ToggleButton } from '@mui/material';
+import { Box, ButtonGroup , Button, Divider } from '@mui/material';
 import GoogleIcon from '@mui/icons-material/Google';
 import ChatIcon from '@mui/icons-material/Chat';
+import CloseIcon from '@mui/icons-material/Close';
 
 
-function Popup() {
-    const [selectedText, setSelectedText] = useState('');
-    const [selected, setSelected] = useState('');
+const Popup = () =>  {
+    const [selectedText, setSelectedText] = useState(''); 
 
-
-    const handleSelection = (event, newSelection) => {
-       console.log(newSelection); 
-    };
+    const handleGoogleSearch = () => {
+        const googleSearchURL = `https://www.google.com/search?q=${encodeURIComponent(selectedText)}`;
+        window.open(googleSearchURL, '_blank');
+    }; 
 
     useEffect(() => {
         console.log('Popup component mounted');
-        const text = window.getSelection().toString().trim();
+        const text = window.getSelection().toString().trim(); 
         console.log('Selected text:', text);
         setSelectedText(text);
-    }, []);
+    }, []); 
 
     return (
         <Box
@@ -34,60 +34,53 @@ function Popup() {
                 fontSize: '0.875rem',
         }}
         >
-        <ToggleButtonGroup
-        value={selected}
-        exclusive
-        onChange={handleSelection}
+        <ButtonGroup
+        variant="solid"
+        buttonFlex={1}
         sx={{
-            bgcolor: '#212121',
+            bgcolor: '#1f1f25',
                 borderRadius: 1,
-                textTransform: 'none',
-        }}>
-        <ToggleButton
-        value="option 1"
+                textTransform: 'none', 
+                maxWidth: '100%',
+                resize: 'horizontal',
+                '--ButtonGroup-separatorColor': 'none !important',
+                '& > span': {
+                    zIndex: 3,
+                    background: 'linear-gradient(to top, transparent, rgba(255, 255, 255 / 0.6), transparent)',
+                },
+        }}> 
+        <Button
         sx={{
-            color: '#cbecec',
+            color: '#f3f3f3',
                 textTransform: 'none',
                 fontSize: '0.875rem',
-                '&:hover': {
-                    bgcolor: '#2f2f2f',
-                    color: '#ece6d5',
-                },
         }}>
-        <ChatIcon sx={{ marginRight: 1 }} />
+        <ChatIcon sx={{ marginRight: 1, fontSize: 16 }} />
         ask chatGPT
-        </ToggleButton>
-        <ToggleButton
-        value="option 2"
+        </Button>
+        <Divider />
+        <Button
+        onClick={handleGoogleSearch}
         sx={{
-            color: '#cbecec',
+            color: '#f3f3f3',
                 textTransform: 'none',
                 fontSize: '0.875rem',
-                '&:hover': {
-                    bgcolor: '#2f2f2f',
-                },
         }}>
-        <GoogleIcon sx={{ marginRight: 1 }} />
-        ask Google
-        </ToggleButton>
-        <ToggleButton
-        value="option 3"
+        <GoogleIcon sx={{ marginRight: 1, fontSize: 16 }} />
+        Search on Google        
+        </Button>
+        <Divider />
+        <Button
         sx={{
-            color: '#cbecec',
-                textTransform: 'none',
-                fontSize: '0.875rem',
-                '&:hover': {
-                    bgcolor: '#2f2f2f',
-                    color: '#ece6d5',
-                },
+            color: '#f3f3f3',
+            textTransform: 'none',
         }}>
-        ask Do something
-        </ToggleButton>
-
-        </ToggleButtonGroup>
-
+        <CloseIcon />
+        </Button>
+        </ButtonGroup>
         </Box>
     );
 }
 
 ReactDOM.render(<Popup />, document.getElementById('popup-root'));
+
