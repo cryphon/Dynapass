@@ -25,6 +25,7 @@ document.addEventListener('mouseup', function () {
             script.onload = () => console.log('Popup script loaded successfully');
             popupContainer.appendChild(script);
         }
+        popupContainer.style.display = 'block';
         popupContainer.style.position = 'absolute';
         popupContainer.style.top = `${coords.top}px`;
         popupContainer.style.left = `${coords.left}px`;

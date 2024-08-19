@@ -12,8 +12,8 @@ const Popup = () =>  {
     const handleGoogleSearch = () => {
         console.log('text: ' + selectedText);
         if (selectedText) {
-        const googleSearchURL = `https://www.google.com/search?q=${encodeURIComponent(selectedText)}`;
-        window.open(googleSearchURL, '_blank');
+            const googleSearchURL = `https://www.google.com/search?q=${encodeURIComponent(selectedText)}`;
+            window.open(googleSearchURL, '_blank');
         }
     }; 
 
@@ -80,7 +80,6 @@ const Popup = () =>  {
         <Divider />
         <Button
         onClick={handleGoogleSearch}
-        disabled={!selectedText}
         sx={{
             color: '#f3f3f3',
                 textTransform: 'none',
@@ -88,15 +87,6 @@ const Popup = () =>  {
         }}>
         <GoogleIcon sx={{ marginRight: 1, fontSize: 16 }} />
         Search on Google        
-        </Button>
-        <Divider />
-        <Button
-        onClick={handlePrint}
-        sx={{
-            color: '#f3f3f3',
-            textTransform: 'none',
-        }}>
-        <CloseIcon />
         </Button>
         </ButtonGroup>
         </Box>
