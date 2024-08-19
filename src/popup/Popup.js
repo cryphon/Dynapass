@@ -10,15 +10,34 @@ const Popup = () =>  {
     const [selectedText, setSelectedText] = useState(''); 
 
     const handleGoogleSearch = () => {
+        console.log('text: ' + selectedText);
+        if (selectedText) {
         const googleSearchURL = `https://www.google.com/search?q=${encodeURIComponent(selectedText)}`;
         window.open(googleSearchURL, '_blank');
+        }
     }; 
+
+    const handlePrint = () => {
+        console.log('blablablbalbabalb: ', selectedText);
+    };
 
     useEffect(() => {
         console.log('Popup component mounted');
-        const text = window.getSelection().toString().trim(); 
-        console.log('Selected text:', text);
-        setSelectedText(text);
+
+        const handleSelectionChange = () => {
+            const text = window.getSelection().toString().trim();
+            console.log('Selection detected:', text);
+            setSelectedText(text);
+        };
+
+        document.addEventListener('selectionchange', handleSelectionChange);
+        document.addEventListener('mouseup', handleSelectionChange);
+
+        // cleanup event listener on unmount
+        return () => {
+            document.removeEventListener('mouseup', handleSelectionChange);
+            document.removeEventListener('selectionchange', handleSelectionChange);
+        };
     }, []); 
 
     return (
@@ -61,6 +80,7 @@ const Popup = () =>  {
         <Divider />
         <Button
         onClick={handleGoogleSearch}
+        disabled={!selectedText}
         sx={{
             color: '#f3f3f3',
                 textTransform: 'none',
@@ -71,6 +91,7 @@ const Popup = () =>  {
         </Button>
         <Divider />
         <Button
+        onClick={handlePrint}
         sx={{
             color: '#f3f3f3',
             textTransform: 'none',
