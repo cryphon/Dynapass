@@ -15,11 +15,7 @@ const Popup = () =>  {
             const googleSearchURL = `https://www.google.com/search?q=${encodeURIComponent(selectedText)}`;
             window.open(googleSearchURL, '_blank');
         }
-    }; 
-
-    const handlePrint = () => {
-        console.log('blablablbalbabalb: ', selectedText);
-    };
+    };  
 
     useEffect(() => {
         console.log('Popup component mounted');
